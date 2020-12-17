@@ -23,6 +23,7 @@
   "rules": {
     "@typescript-eslint/camelcase": "off",
     "no-useless-constructor": "off",
+    "class-methods-use-this": "off",
     "prettier/prettier": ["error",
     {
       "endOfLine": "auto"
