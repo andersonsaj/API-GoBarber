@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for users/services/UpdateUserAvatarService.ts</title>
+    <title>Code coverage report for users/services/CreateUserService.specp.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">users/services</a> UpdateUserAvatarService.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">users/services</a> CreateUserService.specp.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/45</span>
+                <span class='fraction'>0/48</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/45</span>
+                <span class='fraction'>0/48</span>
             </div>
         
             
@@ -102,7 +102,10 @@
 <a name='L43'></a><a href='#L43'>43</a>
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -147,51 +150,57 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import User from '@modules/users/infra/typeorm/entities/User';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import path from 'path';</span>
-<span class="cstat-no" title="statement not covered" >import uploadConfig from '@config/upload';</span>
-<span class="cstat-no" title="statement not covered" >import fs from 'fs';</span>
-<span class="cstat-no" title="statement not covered" >import AppError from '@shared/errors/AppError';</span>
-<span class="cstat-no" title="statement not covered" >import { inject, injectable } from 'tsyringe';</span>
-<span class="cstat-no" title="statement not covered" >import IUsersRepository from '../repositories/IUsersRepository';</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import AppError from '@shared/errors/AppError';</span></span></span>
+<span class="cstat-no" title="statement not covered" >import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';</span>
+<span class="cstat-no" title="statement not covered" >import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';</span>
+<span class="cstat-no" title="statement not covered" >import CreateUserService from './CreateUsersService';</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface IRequest {</span>
-<span class="cstat-no" title="statement not covered" >  user_id: string;</span>
-<span class="cstat-no" title="statement not covered" >  avatarFilename: string;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" >@injectable()</span>
-<span class="cstat-no" title="statement not covered" >class UpdateUserAvatarService {</span>
-<span class="cstat-no" title="statement not covered" >  constructor(</span>
-<span class="cstat-no" title="statement not covered" >    @inject('UsersRepository')</span>
-<span class="cstat-no" title="statement not covered" >    private usersRepository: IUsersRepository,</span>
-<span class="cstat-no" title="statement not covered" >  ) {}</span>
+<span class="cstat-no" title="statement not covered" >describe('CreateUser', () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  it('should be able to create a new user', async () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const fakeUsersRepository = new FakeUsersRepository();</span>
+<span class="cstat-no" title="statement not covered" >    const fakeHashProvider = new FakeHashProvider();</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  public async execute({ user_id, avatarFilename }: IRequest): Promise&lt;User&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const user = await this.usersRepository.findById(user_id);</span>
+<span class="cstat-no" title="statement not covered" >    const createUser = new CreateUserService(</span>
+<span class="cstat-no" title="statement not covered" >      fakeUsersRepository,</span>
+<span class="cstat-no" title="statement not covered" >      fakeHashProvider,</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (!user) {</span>
-<span class="cstat-no" title="statement not covered" >      throw new AppError('Only authenticated users can change avatar.', 401);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >    const user = await createUser.execute({</span>
+<span class="cstat-no" title="statement not covered" >      name: 'Anderson',</span>
+<span class="cstat-no" title="statement not covered" >      email: 'anderson@gmail.com',</span>
+<span class="cstat-no" title="statement not covered" >      password: '5859494',</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (user.avatar) {</span>
-<span class="cstat-no" title="statement not covered" >      // deletar avatar anterior</span>
-<span class="cstat-no" title="statement not covered" >      const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar);</span>
-<span class="cstat-no" title="statement not covered" >      const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath);</span>
+<span class="cstat-no" title="statement not covered" >    expect(user).toHaveProperty('id');</span>
+<span class="cstat-no" title="statement not covered" >  });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      if (userAvatarFileExists) {</span>
-<span class="cstat-no" title="statement not covered" >        await fs.promises.unlink(userAvatarFilePath);</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  it('should not be able to create a new user with same email from another', async () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const fakeUsersRepository = new FakeUsersRepository();</span>
+<span class="cstat-no" title="statement not covered" >    const fakeHashProvider = new FakeHashProvider();</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    user.avatar = avatarFilename;</span>
+<span class="cstat-no" title="statement not covered" >    const createUser = new CreateUserService(</span>
+<span class="cstat-no" title="statement not covered" >      fakeUsersRepository,</span>
+<span class="cstat-no" title="statement not covered" >      fakeHashProvider,</span>
+<span class="cstat-no" title="statement not covered" >    );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    await this.usersRepository.update(user);</span>
+<span class="cstat-no" title="statement not covered" >    const user = await createUser.execute({</span>
+<span class="cstat-no" title="statement not covered" >      name: 'Anderson',</span>
+<span class="cstat-no" title="statement not covered" >      email: 'anderson@gmail.com',</span>
+<span class="cstat-no" title="statement not covered" >      password: '5859494',</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return user;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default UpdateUserAvatarService;</span>
+<span class="cstat-no" title="statement not covered" >    expect(</span>
+<span class="cstat-no" title="statement not covered" >      createUser.execute({</span>
+<span class="cstat-no" title="statement not covered" >        name: 'Anderson',</span>
+<span class="cstat-no" title="statement not covered" >        email: 'anderson@gmail.com',</span>
+<span class="cstat-no" title="statement not covered" >        password: '5859494',</span>
+<span class="cstat-no" title="statement not covered" >      }),</span>
+<span class="cstat-no" title="statement not covered" >    ).rejects.toBeInstanceOf(AppError);</span>
+<span class="cstat-no" title="statement not covered" >  });</span>
+<span class="cstat-no" title="statement not covered" >});</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -199,7 +208,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Dec 19 2020 14:28:19 GMT-0300 (Horário Padrão de Brasília)
+                at Sat Dec 19 2020 11:13:18 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../prettify.js"></script>
