@@ -3,8 +3,8 @@
 node_modules/
 build/
 temp/
-
+/src/config/authEmail.ts
 tmp/*
 !tmp/.gitkeep
 
-coverade/
+/coverade/
