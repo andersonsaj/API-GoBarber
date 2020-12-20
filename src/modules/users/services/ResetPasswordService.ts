@@ -11,7 +11,7 @@ interface IRequest {
 }
 
 @injectable()
-class SendForgotPasswordEmailService {
+class ResetPasswordService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -34,7 +34,6 @@ class SendForgotPasswordEmailService {
     if (!user) {
       throw new AppError('User does not exists');
     }
-
     const tokenCreateAt = userToken.created_at;
     const compareDate = addHours(tokenCreateAt, 2);
 
@@ -48,4 +47,4 @@ class SendForgotPasswordEmailService {
   }
 }
 
-export default SendForgotPasswordEmailService;
+export default ResetPasswordService;
