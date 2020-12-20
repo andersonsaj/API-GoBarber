@@ -1,5 +1,7 @@
 import AppError from '@shared/errors/AppError';
+import { addHours, isAfter } from 'date-fns';
 import { inject, injectable } from 'tsyringe';
+import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IUserTokensRepository from '../repositories/IUserTokensRepository';
 
@@ -16,6 +18,9 @@ class SendForgotPasswordEmailService {
 
     @inject('UserTokensRepository')
     private userTokensRepository: IUserTokensRepository,
+
+    @inject('HashProvider')
+    private hashProvider: IHashProvider,
   ) {}
 
   public async execute({ token, password }: IRequest): Promise<void> {
@@ -30,7 +35,14 @@ class SendForgotPasswordEmailService {
       throw new AppError('User does not exists');
     }
 
-    user.password = password;
+    const tokenCreateAt = userToken.created_at;
+    const compareDate = addHours(tokenCreateAt, 2);
+
+    if (isAfter(Date.now(), compareDate)) {
+      throw new AppError('Token expired');
+    }
+
+    user.password = await this.hashProvider.generateHash(password);
 
     await this.usersRepository.update(user);
   }
