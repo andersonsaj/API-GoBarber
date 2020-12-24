@@ -3,8 +3,9 @@
 node_modules/
 build/
 temp/
+ormconfig.json
 /src/config/authEmail.ts
 tmp/*
 !tmp/.gitkeep
-
-/coverade/
+.env
+coverage/

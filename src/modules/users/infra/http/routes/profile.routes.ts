@@ -12,7 +12,7 @@ profileRouter.get('/', profileController.show);
 profileRouter.put(
   '/',
   celebrate({
-    [Segments.PARAMS]: {
+    [Segments.BODY]: {
       name: Joi.string().required(),
       email: Joi.string().email().required(),
       old_password: Joi.string(),

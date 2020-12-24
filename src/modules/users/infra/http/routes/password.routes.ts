@@ -10,7 +10,7 @@ const resetPassordController = new ResetPassordController();
 passwordRouter.post(
   '/forgot',
   celebrate({
-    [Segments.PARAMS]: {
+    [Segments.BODY]: {
       email: Joi.string().required(),
     },
   }),
@@ -19,7 +19,7 @@ passwordRouter.post(
 passwordRouter.post(
   '/reset',
   celebrate({
-    [Segments.PARAMS]: {
+    [Segments.BODY]: {
       token: Joi.string().uuid().required(),
       password: Joi.string().required(),
       password_confirmation: Joi.string().required().valid(Joi.ref('password')),
