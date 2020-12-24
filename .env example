@@ -1,3 +1,4 @@
+#Appication
 APP_SECRET=
 APP_API_URL=http://localhost:3333
 APP_WEB_URL=http://localhost:3000
@@ -8,3 +9,10 @@ EMAIL_PORT=
 EMAIL_SECURE=
 EMAIL_AUTH_USER=
 EMAIL_AUTH_PASS=
+
+#Mail
+MAIL_DRIVER=
+
+#AWS Credentials
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
