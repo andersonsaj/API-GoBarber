@@ -4,9 +4,6 @@ APP_API_URL=http://localhost:3333
 APP_WEB_URL=http://localhost:3000
 
 #config email
-EMAIL_HOST=
-EMAIL_PORT=
-EMAIL_SECURE=
 EMAIL_AUTH_USER=
 EMAIL_AUTH_PASS=
 

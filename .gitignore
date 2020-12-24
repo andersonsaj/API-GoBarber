@@ -8,3 +8,5 @@ tmp/*
 !tmp/.gitkeep
 .env
 coverage/
+yarn.lock
+yarn-error.log

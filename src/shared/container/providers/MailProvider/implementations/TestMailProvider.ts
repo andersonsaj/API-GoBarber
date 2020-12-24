@@ -1,4 +1,3 @@
-import AppError from '@shared/errors/AppError';
 import nodemailer, { Transporter } from 'nodemailer';
 import { inject, injectable } from 'tsyringe';
 import IMailTemplateProvider from '../../MailTemplateProvider/models/IMailTemplateProvider';
@@ -6,7 +5,7 @@ import ISendMailDTO from '../dtos/ISendMailDTO';
 import IMailProvider from '../models/IMailProvider';
 
 @injectable()
-export default class EtherealMailProvider implements IMailProvider {
+export default class TestMailProvider implements IMailProvider {
   private client: Transporter;
 
   constructor(
@@ -14,9 +13,9 @@ export default class EtherealMailProvider implements IMailProvider {
     private mailTemplateProvider: IMailTemplateProvider,
   ) {
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
-      secure: process.env.EMAIL_SECURE,
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_AUTH_USER,
         pass: process.env.EMAIL_AUTH_PASS,
