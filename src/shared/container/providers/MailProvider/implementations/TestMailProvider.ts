@@ -34,7 +34,7 @@ export default class TestMailProvider implements IMailProvider {
       .sendMail({
         from: {
           name: from?.name || 'Equipe GoBarber',
-          address: from?.email || process.env.EMAIL_AUTH_USER,
+          address: from?.email || process.env.EMAIL_AUTH_USER || 'default',
         },
         to: {
           name: to.name,
